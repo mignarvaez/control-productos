@@ -32,11 +32,12 @@ public class Producto {
 
 	/**
 	 * El identificador del producto, con una etiqueta ID y con una estrategia
+	 * Es de tipo Long para que pueda usarse en el repositorio como ID.
 	 * identity (autoincrementable)
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	/**
 	 * El nombre del producto
@@ -75,13 +76,13 @@ public class Producto {
 	private int cantidad;
 
 	/**
-	 * El precio unitario dle producto
+	 * El precio unitario del producto
 	 */
 	@NotNull
 	private double precio;
 
 	/**
-	 * La fecha de ingreso al sistema, se agrega anotacion de tipo date. y formato
+	 * La fecha de ingreso al sistema, se agrega anotacion de tipo date y formato
 	 * de fecha
 	 */
 	@NotNull
