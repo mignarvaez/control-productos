@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Se especifica que se usara thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Se indica que traiga el fragmento head desde el layout -->
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<!-- Se indica que traiga el fragmento header desde el layout -->
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item active" th:text="${producto.nombre}"></li>
+					<li class="list-group-item" th:text="${producto.categoria}"></li>
+					<li class="list-group-item" th:text="${producto.presentacion}"></li>
+					<li class="list-group-item" th:text="${producto.fabricante}"></li>
+					<li class="list-group-item" th:switch="${producto.esImportado}">
+						<span th:case="true"> Si </span>
+						<span th:case="false"> No </span>						
+					</li>
+					<li class="list-group-item" th:text="${producto.cantidad}"></li>
+					<li class="list-group-item" th:text="${producto.precio}"></li>
+					<li class="list-group-item" th:text="${producto.fechaIngreso}"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Se indica que traiga el fragmento footer desde el layout -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

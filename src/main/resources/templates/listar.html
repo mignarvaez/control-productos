@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Se especifica que se usara thymeleaf y thymeleaf security -->
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!-- Se indica que traiga el fragmento head desde el layout -->
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<!-- Se indica que traiga el fragmento header desde el layout -->
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class= "py-4 ml-5 mr-5">
+		<div class= "card bg-light"> 
+			<div class="card-header h4 text-center" th:text ="${titulo}"></div>
+			<div class="card-body">
+			<h4 class="card-title">
+				<a th:href="@{/form/}" class="btn btn-primary">Agregar producto</a>
+				<a th:href="@{/exportarPDF}" class="btn btn-secondary">Exportar PDF</a>
+				<a th:href="@{/exportarExcel}" class="btn btn-success">Exportar Excel</a>
+			</h4>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Categoria</th>
+							<th>Presentación</th>
+							<th>Fabricante</th>
+							<th>Importado</th>
+							<th>Cantidad</th>
+							<th>Precio</th>
+							<th>Fecha registro sistema</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="producto : ${productos}">
+							<td th:text="${producto.id}"></td>
+							<td th:text="${producto.nombre}"></td>
+							<td th:text="${producto.categoria}"></td>
+							<td th:text="${producto.presentacion}"></td>
+							<td th:text="${producto.fabricante}"></td>
+							<td th:switch="${producto.esImportado}">
+								<span th:case="true"> Si </span>
+								<span th:case="false"> No </span>
+							</td>
+							<td th:text="${producto.cantidad}"></td>
+							<td th:text="${producto.precio}"></td>
+							<td th:text="${producto.fechaIngreso}"></td>
+							<td><a class = "btn btn-info btn-sm" th:href="@{/ver/} + ${producto.id}">Detalles</a></td>
+							
+							<!-- Se indica que editar y elminar son solo accesibles para administradores -->
+							<td><a class = "btn btn-warning btn-sm" th:href="@{/form/} + ${producto.id}" sec:authorize="hasRole('ADMIN')" >Editar</a></td>
+							<td><a class = "btn btn-danger btn-sm" th:href="@{/eliminar/} + ${producto.id}" sec:authorize="hasRole('ADMIN')" onclick="return confirm('¿Estás seguro de eliminar?');">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- Se agrega el paginador -->
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Se indica que traiga el fragmento footer desde el layout -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

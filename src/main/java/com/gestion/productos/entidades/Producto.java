@@ -66,7 +66,7 @@ public class Producto {
 	/**
 	 * La representacion sobre si el producto es importado o no
 	 */
-	@NotEmpty
+	@NotNull
 	private boolean esImportado;
 
 	/**
@@ -105,11 +105,11 @@ public class Producto {
 	// Métodos
 	// -------------------------------------------------------------
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

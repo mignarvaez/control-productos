@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- Se especifica que se usara thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Se indica que traiga el fragmento head desde el layout -->
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<!-- Se indica que traiga el fragmento header desde el layout -->
+	<header th:replace="layout/layout :: header"></header>
+	
+	<br>
+	
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center" th:text=${titulo}></h1>
+				<div class="card-body">
+					<form th:action="@{/form}" th:object="${producto}" method="post">
+						<input type="hidden" th:field="*{id}" th:value="${producto.id}">
+						<div class="form-group">
+							<label>Nombre:</label>
+							<input type="text" th:field="*{nombre}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+						</div>
+						
+						<div class="form-group">
+							<label>Categoria:</label>
+							<input type="text" th:field="*{categoria}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></small>
+						</div>	
+						
+						<div class="form-group">
+							<label>Presentación:</label>
+							<input type="text" th:field="*{presentacion}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('presentacion')}" th:errors="*{presentacion}"></small>
+						</div>
+						
+						<div class="form-group">
+							<label>Fabricante:</label>
+							<input type="text" th:field="*{fabricante}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('fabricante')}" th:errors="*{fabricante}"></small>
+						</div>	
+						
+						<div class="form-group">
+							<label>Es importado:</label>
+							<select class="form-control" th:field="*{esImportado}">
+								<option th:value='true'> Si </option>
+								<option th:value='false'> No </option>
+							</select>
+						</div>		
+						
+						<div class="form-group">
+							<label>Cantidad:</label>
+							<input type="text" th:field="*{cantidad}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></small>
+						</div>	
+						
+						<div class="form-group">
+							<label>Precio:</label>
+							<input type="text" th:field="*{precio}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></small>
+						</div>		
+																	
+						<div class="form-group">
+							<label>Fecha ingreso producto:</label>
+							<input type="date" th:field="*{fechaIngreso}" class="form-control" th:errorclass="'form-control alert-danger'">
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="*{fechaIngreso}"></small>
+						</div>																	
+						<br>
+						<div class="box-footer">
+							<input type="submit" value="Guardar" class="btn btn-primary">
+						</div>			
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Se indica que traiga el fragmento footer desde el layout -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

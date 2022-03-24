@@ -151,10 +151,20 @@ public class PageRender<T> {
 	}
 
 	/**
-	 * Método que indica si la ágina tiene anterior
+	 * Método que indica si la página tiene anterior
 	 * @return
 	 */
 	public boolean isHasPrevious() {
 		return page.hasPrevious();
 	}
+	
+	/**
+	 * Método que indica si se esta en la primera página
+	 * 
+	 * @return
+	 */
+	public boolean isFirst() {
+		return page.isFirst();
+	}
+
 }
